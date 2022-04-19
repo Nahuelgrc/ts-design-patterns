@@ -1,6 +1,6 @@
-import IPower from "./interfaces/IPower";
-import IDimmer from "./interfaces/IDimmer";
-import IMovie from "./interfaces/IMovie";
+import IPower from "../interfaces/IPower";
+import IDimmer from "../interfaces/IDimmer";
+import IMovie from "../interfaces/IMovie";
 
 export class TV implements IPower {
   turnOn(): void {
@@ -50,7 +50,7 @@ export class Movie implements IMovie {
     this.bluray = bluray;
   }
 
-  start(): void {
+  async start(): Promise<void> {
     console.log("Welcome. The TV is starting...");
     this.lights.setDim(0);
     this.bluray.turnOn();
@@ -58,7 +58,7 @@ export class Movie implements IMovie {
     console.log("TV finished starting. Enjoy your movie.");
   }
 
-  stop(): void {
+  async stop(): Promise<void> {
     console.log("Hope you enjoyed your movie. TV is turning off...");
     this.lights.setDim(100);
     this.bluray.turnOff();
