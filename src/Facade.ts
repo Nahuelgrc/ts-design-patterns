@@ -1,8 +1,19 @@
-import IPower from "../interfaces/IPower";
-import IDimmer from "../interfaces/IDimmer";
-import IMovie from "../interfaces/IMovie";
+interface IMovie {
+  start: () => void;
+  stop: () => void;
+}
 
-export class TV implements IPower {
+interface IDimmer {
+  setDim: (value: number) => void;
+  getDim: () => number;
+}
+
+interface IPower {
+  turnOn: () => void;
+  turnOff: () => void;
+}
+
+class TV implements IPower {
   turnOn(): void {
     console.log("TV is turning on...");
   }
@@ -12,7 +23,7 @@ export class TV implements IPower {
   }
 }
 
-export class Lights implements IDimmer {
+class Lights implements IDimmer {
   private dim: number;
 
   constructor() {
@@ -29,7 +40,7 @@ export class Lights implements IDimmer {
   }
 }
 
-export class BluRay implements IPower {
+class BluRay implements IPower {
   turnOn(): void {
     console.log("BluRay is turning on...");
   }
@@ -39,7 +50,7 @@ export class BluRay implements IPower {
   }
 }
 
-export class Movie implements IMovie {
+class Movie implements IMovie {
   private tv: TV;
   private lights: Lights;
   private bluray: BluRay;
@@ -66,3 +77,12 @@ export class Movie implements IMovie {
     console.log("Good bye");
   }
 }
+
+const bluray = new BluRay();
+const lights = new Lights();
+const tv = new TV();
+
+const movie = new Movie(tv, lights, bluray);
+
+movie.start();
+movie.stop();

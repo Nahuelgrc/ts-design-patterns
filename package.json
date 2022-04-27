@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --respawn src/app.ts",
+    "facade": "tsc && node build/facade.js",
+    "adapter": "tsc && node build/adapter.js",
+    "observer": "tsc && node build/observer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.17.13",
     "@types/node": "^17.0.25"
   },
   "dependencies": {
-    "express": "^4.17.3",
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.3"

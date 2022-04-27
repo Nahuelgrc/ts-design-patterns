@@ -1,21 +1,26 @@
-import IUSPlug from "../interfaces/IUSPlug";
-import IUKPlug from "../interfaces/IUKPlug";
+interface IUKPlug {
+  sendPower: () => number;
+}
 
-export class UKPlug implements IUKPlug {
+interface IUSPlug {
+  sendPower: () => number;
+}
+
+class UKPlug implements IUKPlug {
   sendPower(): number {
     console.log("Giving 220V");
     return 220;
   }
 }
 
-export class USPlug implements IUSPlug {
+class USPlug implements IUSPlug {
   sendPower(): number {
     console.log("Giving 100V");
     return 100;
   }
 }
 
-export class USPlugToUKPlugAdapter implements USPlug {
+class USPlugToUKPlugAdapter implements USPlug {
   private USPlug: USPlug;
 
   constructor(USPlug: USPlug) {
@@ -33,3 +38,7 @@ export class USPlugToUKPlugAdapter implements USPlug {
     return UKV;
   }
 }
+
+const usPlug = new USPlug();
+const adapter = new USPlugToUKPlugAdapter(usPlug);
+adapter.sendPower();
